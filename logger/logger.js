@@ -55,7 +55,7 @@ define(['jails'],function( jails ){
 	//3. Watch for emit and listening
 	function events_watcher(){
 
-		var topics = {};
+		var publish, subscribe, topics = {};
 
 		for( var type in items )(function(type, items){
 
@@ -168,7 +168,6 @@ define(['jails'],function( jails ){
 		no_used_modules();
 		no_module_found();
 		messages_call();
-		refresh();
 
 		events_watcher();
 	};
