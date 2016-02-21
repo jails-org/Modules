@@ -37,9 +37,9 @@ require.config({
 		adapter		:'path/to/my/modules/adapter.jquery'
 	},
 
-	callback :function( jails, adapter ){
-
-		jails.events = adapter;
+	callback :function( jails, adapter, jquery ){
+		
+		jails.events = adapter( jquery );
 		jails.start();
 	}
 });
