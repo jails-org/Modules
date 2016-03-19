@@ -40,7 +40,7 @@ define(['jails'],function( jails ){
 			var m = (target||root).querySelectorAll('[data-'+type+']');
 
 			for( var c = 0; c < m.length; c++){
-				var name = m[c].getAttribute('data-'+type).replace(/\s/, '').split(/\,/);
+				var name = m[c].getAttribute('data-'+type).replace(/\,/, ' ').replace(/\s{2,}/, ' ').split(/\s/);
 
 				for(var x = 0; x < name.length; x++)
 					if( !(name[x] in jails[type+'s']) ){
