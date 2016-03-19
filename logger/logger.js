@@ -161,7 +161,7 @@ define(['jails'],function( jails ){
 
 	return function(scope){
 
-		root = document.documentElement;
+		root = document;
 
 		console.log( '👓%c[ Welcome to Jails Logger ]👓', 'color:#336699');
 
