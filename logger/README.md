@@ -2,7 +2,7 @@
 
 >The official and beta Jails logger.
 
->**Version** :`0.3.1`
+>**Version** :`0.3.2`
 
 >**Author**: [Eduardo Ottaviani](//github.com/Javiani)
 
