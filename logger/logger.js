@@ -14,7 +14,7 @@ define(['jails'],function( jails ){
 			string = string.replace( new RegExp('\\{' + (i-1) + '\\}', 'g'), arguments[i] );
 		}
 
-		return '[Jails::logger] => ' + string;
+		return '👓[Jails::logger] 👉 ' + string;
 	}
 
 	//1. Html markup not found
@@ -90,7 +90,7 @@ define(['jails'],function( jails ){
 						var x = this.x, it = this;
 						this.x = function(target){
 							return function(method){
-								console.log( print( '[{0}].x( {1} ) called %c'+method, it.name, target ), 'color:#336699' );
+								console.log( print( '[{0}].x( {1} ) called %c'+method +' ✓', it.name, target ), 'color:#336699' );
 								return x.call(it, target).apply(it, arguments);
 							}
 						};
@@ -114,14 +114,14 @@ define(['jails'],function( jails ){
 				if(!(ev in topics)){
 					console.info( print( '[{0}].publish( '+ev+' ) %cFailed, publishing before subscribe, it will try again after a subscribe. ✘', this.name || 'jails' ), 'color:gray; font-style:italic');
 				}else{
-					console.log( print( '[{0}] %cpublished \'{1}\'', this.name || 'jails', ev ), 'color:green;', args );
+					console.log( print( '[{0}] %cpublished \'{1}\' ✓', this.name || 'jails', ev ), 'color:green;', args );
 				}
 				publish.apply(context, arguments);
 			};
 
 			context.subscribe = function(ev){
 				topics[ev] = true;
-				console.log( print( '[{0}] %csubscribed to \'{1}\'', this.name || 'jails', ev ), 'color:green;' );
+				console.log( print( '[{0}] %csubscribed to \'{1}\' ✓', this.name || 'jails', ev ), 'color:green;' );
 				subscribe.apply(this, arguments);
 			};
 		}
@@ -138,7 +138,7 @@ define(['jails'],function( jails ){
 				var data = element.getAttribute('data-'+type);
 
 				jails.events.on(element, 'execute', function(e, o){
-					console.log( print('%c['+type+'.'+data+'] method executed.'), 'color:#336699', e.detail );
+					console.log( print('%c['+type+'.'+data+'] method executed. ✓'), 'color:#336699', e.detail );
 				});
 
 			})(m[c]);
@@ -164,7 +164,7 @@ define(['jails'],function( jails ){
 
 		root = document;
 
-		console.log( '%c[ Welcome to Jails Logger ]', 'color:#336699');
+		console.log( '👓%c[ Welcome to Jails Logger ]👓', 'color:#336699');
 
 		no_used_modules();
 		no_module_found();
