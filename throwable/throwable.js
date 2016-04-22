@@ -99,10 +99,10 @@ define(['jails'],function( jails ){
 
 			var err = e.error;
 
-			jails.publish('throwable', err);
+			jails.publish('throwable', err, e);
 
 			if( err.at )
-				jails.publish('throwable@'+err.at+':'+err.module.name, err);
+				jails.publish('throwable@'+err.at+':'+err.module.name, err, e);
 
 			if( e.preventDefault )
 				e.preventDefault();
