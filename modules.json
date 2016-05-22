@@ -62,6 +62,12 @@
 			"authors" :["Eduardo Ottaviani"],
 			"description" :"A global pubsub container to handle publish and subscribe pattern, triggers a custom event and listen to them aswell. Very useful to decouple your components and make them more standalone",
 			"section" :"Events"
+		},
+		{
+			"name" :"dinamitedux",
+			"authors" :["Eduardo Ottaviani"],
+			"description" :"The dinamitedux is a simplified version of Redux pattern for small applications.",
+			"section" :"Persistence"
 		}
 
 	]
