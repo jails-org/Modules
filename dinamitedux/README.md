@@ -1,6 +1,6 @@
-# litestore
+# dinamitedux
 
-> litestore is a simplified version of Redux pattern for small applications.
+> dinamitedux is a simplified version of Redux pattern for small applications.
 
 >**Version** :`0.1.0`
 
@@ -8,7 +8,7 @@
 
 ---
 
-Not all applications requires Flux or Redux architecture due to its simple architecture, for those cases `litestore` might be just the right thing for you.
+Not all applications requires Flux or Redux architecture due to its simple architecture, for those cases `dinamitedux` might be just the right thing for you.
 
 
 ## Methods
