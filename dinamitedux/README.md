@@ -17,6 +17,14 @@ Not all applications requires Flux or Redux architecture due to its simple archi
 
 Returns the actual state of application
 
+## Pub/Sub
+
+### Pubsub.publish('store', action)
+Dinamitedux get's a pubsub object to send and receive messages and register a `store` event to get an action. To send an action to the store, just publish to `store` sending an action.
+
+### Pubsub.subscribe('store:update', callback)
+To listen to any store updates, just subscribe to `store:update` sending a callback as a parameter.
+
 ## Usage
 
 `stores/cars.js`
