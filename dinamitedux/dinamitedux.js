@@ -10,7 +10,7 @@ define(function(){
 
 		pubsub.subscribe('store', function( payload ){
 			if( payload.action in self ){
-				var newstate = self[ payload.action ].call( null, state, payload )
+				var newstate = self[ payload.action ].call( null, Object.assign(state), payload )
 				pubsub.publish( 'store:update', newstate )
 			}
 		})
