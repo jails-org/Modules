@@ -17,6 +17,12 @@ Not all applications requires Flux or Redux architecture due to its simple archi
 
 Returns the actual state of application
 
+### .dispatch( payload )
+Publishes to `store` event sending a payload as a parameter
+
+### .subscribe ( Function )
+Subscribe a function and executes on every store updates. (`store:update`).
+
 ## Pub/Sub
 
 ### Pubsub.publish('store', action)
