@@ -2,7 +2,7 @@
 
 > dinamitedux is a simplified version of Redux pattern for small applications.
 
->**Version** :`0.1.0`
+>**Version** :`0.1.1`
 
 >**Author**: [Eduardo Ottaviani](//github.com/Javiani)
 
