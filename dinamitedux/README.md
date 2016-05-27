@@ -23,6 +23,9 @@ Publishes to `store` event sending a payload as a parameter
 ### .subscribe ( Function )
 Subscribe a function and executes on every store updates. (`store:update`).
 
+### .on( String action name, Function reducer)
+Register a reducers with an action name, it will be called on every action with the same type called.
+
 ## Pub/Sub
 
 ### Pubsub.publish('store', action)
@@ -56,22 +59,22 @@ require([
 		selected : null
 	});
 
-	store.UPDATE = function( state, action ){
+	store.on('UPDATE', function( state, action ){
 		state.selected[ action.type ] = action.value;
 		return state;
-	}
+	})
 
-	store.UNSELECT = function( state, action ){
+	store.on('UNSELECT', function( state, action ){
 		state.selected = null;
 		return state;
-	}
+	})
 
-	store.SELECT = function( state, action ){
+	store.on('SELECT', function( state, action ){
 		state.selected = state.cars.filter(function( car ){
 			return car.id == action.id;
 		})[0];
 		return state;
-	}
+	})
 });
 
 ```

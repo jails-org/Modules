@@ -16,11 +16,14 @@ define(function(){
 			pubsub.publish('store', action);
 		};
 
+		this.on = function( action, reducer ){
+			pubsub.subscribe('store@' + action, reducer);
+		};
+
 		pubsub.subscribe('store', function( payload ){
-			if( payload.action in self ){
-				var newstate = self[ payload.action ].call( null, Object.assign(state), payload )
-				pubsub.publish( 'store:update', newstate )
-			}
-		})
+			var newstate = Object.assign(state);
+			pubsub.publish('store@'+payload.action, newstate, payload);
+			pubsub.publish( 'store:update', newstate );
+		});
 	};
 });
