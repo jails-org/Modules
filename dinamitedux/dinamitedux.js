@@ -2,8 +2,6 @@ define(function(){
 
 	return function( pubsub, state ){
 
-		var self = this;
-
 		this.getState = function(){
 			return state
 		};
@@ -17,9 +15,10 @@ define(function(){
 		};
 
 		this.on = function( action, reducer ){
-			var args = action.split(/\-\>/);
+			var args = action.split(/\@/);
+			var prop = state[args[1]];
+
 			pubsub.subscribe('store@' + args[0], ( state, payload )=>{
-				var prop = state[args[1]];
 				state[args[1]] = reducer( prop, payload );
 			});
 		};
