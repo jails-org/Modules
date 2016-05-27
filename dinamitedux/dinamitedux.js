@@ -5,7 +5,7 @@ define(function(){
 		var self = this;
 
 		this.getState = function(){
-			return Object.assign( state )
+			return state
 		};
 
 		this.subscribe = function( callback ){
@@ -17,13 +17,16 @@ define(function(){
 		};
 
 		this.on = function( action, reducer ){
-			pubsub.subscribe('store@' + action, reducer);
+			var args = action.split(/\@/);
+			pubsub.subscribe('store@' + args[0], ( state, payload )=>{
+				var prop = state[args[1]];
+				state[args[1]] = reducer( prop, payload );
+			});
 		};
 
 		pubsub.subscribe('store', function( payload ){
-			var newstate = Object.assign(state);
-			pubsub.publish('store@'+payload.action, newstate, payload);
-			pubsub.publish( 'store:update', newstate );
+			pubsub.publish('store@'+payload.action, state, payload);
+			pubsub.publish( 'store:update', state );
 		});
 	};
 });
