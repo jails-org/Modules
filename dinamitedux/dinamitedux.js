@@ -17,7 +17,7 @@ define(function(){
 		};
 
 		this.on = function( action, reducer ){
-			var args = action.split(/\@/);
+			var args = action.split(/\-\>/);
 			pubsub.subscribe('store@' + args[0], ( state, payload )=>{
 				var prop = state[args[1]];
 				state[args[1]] = reducer( prop, payload );
