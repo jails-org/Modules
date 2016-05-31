@@ -17,23 +17,6 @@ Not all applications requires Flux or Redux architecture due to its simple archi
 
 Returns the actual state of application
 
-### .dispatch( payload )
-Publishes to `store` event sending a payload as a parameter
-
-### .subscribe ( Function )
-Subscribe a function and executes on every store updates. (`store:update`).
-
-### .on( String `action@property`, Function reducer)
-Register a reducers with an action name, it will be called on every action with the same type called and will get the property from the current state.
-
-## Pub/Sub
-
-### Pubsub.publish('store', action)
-Dinamitedux get's a pubsub object to send and receive messages and register a `store` event to get an action. To send an action to the store, just publish to `store` sending an action.
-
-### Pubsub.subscribe('store:update', callback)
-To listen to any store updates, just subscribe to `store:update` sending a callback as a parameter.
-
 ## Usage
 
 `stores/cars.js`
@@ -59,18 +42,22 @@ require([
 		selected : null
 	});
 
-	store.on('UPDATE@cars', function( state, action ){
-		state[action.id][ action.type ] = action.value;
+	store.UPDATE = function( state, action ){
+		state.selected[ action.type ] = action.value;
 		return state;
-	})
+	}
 
-	store.on('UNSELECT@selected', function( state, action ){
-		return null;
-	})
+	store.UNSELECT = function( state, action ){
+		state.selected = null;
+		return state;
+	}
 
-	store.on('SELECT@selected', function( state, action ){
-		return +(action.id)
-	})
+	store.SELECT = function( state, action ){
+		state.selected = state.cars.filter(function( car ){
+			return car.id == action.id;
+		})[0];
+		return state;
+	}
 });
 
 ```
