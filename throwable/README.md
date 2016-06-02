@@ -59,10 +59,10 @@ Instead of handling errors inside your module, you can create errors files that 
 ```js
 define([
 	'jails',
-	'errors/my-controller.error'
+	'errors/test.error'
 ], function( jails ){
 
-	jails.controller('my-controller', function( html, data ){
+	jails.controller('test', function( html, data ){
 
 		this.init = function(){
 			undefinedMethod();
@@ -71,11 +71,11 @@ define([
 });
 ```
 
-**my-controller.error.js**
+**test.error.js**
 ```js
 define(['jails'], function( jails ){
 
-	jails.subscribe('throwable@controller:my-controller', function( error ){
+	jails.subscribe('throwable@controller:test', function( error ){
 
 		switch( error.message ){
 			default : console.error( 'Uncaught Error', error );
@@ -89,14 +89,14 @@ define(['jails'], function( jails ){
 All mixins calls and `.init()` methods are try/catch wrapped to prevent errors on modules, but for a performance matter, the methods and functions inside a mixin are not wrapped. If you feel that some method has a non-deterministic behavior or it's not possible to know all the possible errors that can be thrown, in that case, you can use the `.try()` method.
 
 
-**my-controller.js**
+**test.js**
 ```js
 define([
 	'jails',
-	'errors/my-controller.error'
+	'errors/test.error'
 ], function( jails ){
 
-	jails.controller('my-controller', function( html, data ){
+	jails.controller('test', function( html, data ){
 
 		this.init = function(){
 			this.on('click', 'a', this.try( message ));
@@ -115,7 +115,7 @@ define([
 });
 ```
 
-**my-controller.error.js**
+**test.error.js**
 ```js
 define(['jails'], function( jails ){
 
