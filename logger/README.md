@@ -6,6 +6,8 @@
 
 >**Author**: [Eduardo Ottaviani](//github.com/Javiani)
 
+**NOT COMPATIBLE WITH Jails 1.4+**
+
 ---
 
 Jails architecture relies on messaging strategy once it helps us to decouple our modules. Unfortunately, it turns out that it can be pretty hard to track and debug events in Javascript.
