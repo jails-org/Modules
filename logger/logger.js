@@ -95,9 +95,10 @@ define(['jails'],function( jails ){
 							}
 						};
 					}
-
 					fn.apply(this, arguments);
 				};
+
+				jails[type+'s'][m].prototype = fn.prototype;
 
 			})(m);
 
@@ -111,9 +112,7 @@ define(['jails'],function( jails ){
 			var subscribe 	= context.subscribe;
 
 			context.publish = function(ev, args){
-				if(!(ev in topics)){
-					console.info( print( '[{0}].publish( '+ev+' ) %cFailed, publishing before subscribe, it will try again after a subscribe. ✘', this.name || 'jails' ), 'color:gray; font-style:italic');
-				}else{
+				if(ev in topics){
 					console.log( print( '[{0}] %cpublished \'{1}\' ✓', this.name || 'jails', ev ), 'color:green;', args );
 				}
 				publish.apply(context, arguments);
