@@ -2,11 +2,11 @@
 
 >The official and beta Jails logger.
 
->**Version** :`0.3.1`
+>**Version** :`0.4.0`
 
 >**Author**: [Eduardo Ottaviani](//github.com/Javiani)
 
-**NOT COMPATIBLE WITH Jails 1.4+**
+** FULLY COMPATIBLE WITH Jails 1.4+**
 
 ---
 
