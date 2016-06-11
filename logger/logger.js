@@ -24,6 +24,7 @@ define(['jails'],function( jails ){
 
 		for( type in items ){
 			for( name in items[type] ){
+				name = name.replace(/\//, '\\/');
 				if( !(target||root).querySelector('[data-'+type+'*='+name+']' ) ){
 					console.warn(
 						print( '{0}.{1} was not found on html markup.', type, name )
