@@ -1,4 +1,4 @@
-define(['jquery'], function($){
+define(function($){
 
 	return{
 		on :function(el, ev, callback){
