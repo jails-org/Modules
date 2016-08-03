@@ -10,7 +10,6 @@ define(['jails'],function( jails ){
 		markup( context );
 		module_not_found( context );
 		emit_and_listen( context );
-		messages_call( context );
 
 		refresh.apply(this, arguments);
 	};
