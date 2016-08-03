@@ -3,16 +3,6 @@ define(['jails'],function( jails ){
 	var root 	   = document;
 	var Component  = jails.Component;
 	var components = jails.components;
-	var refresh    = jails.refresh;
-
-	jails.refresh = function( context ){
-
-		markup( context );
-		module_not_found( context );
-		emit_and_listen( context );
-
-		refresh.apply(this, arguments);
-	};
 
 	//1. Html markup not found
 	function markup( target ){
@@ -102,11 +92,11 @@ define(['jails'],function( jails ){
 		return '👓 [Jails::logger] 👉 ' + string;
 	}
 
-	return function(){
+	return function( target ){
 		console.log( '👓%c[ Welcome to Jails Logger ]👓', 'color:#336699');
 
-		markup();
-		module_not_found();
+		markup( target );
+		module_not_found( target );
 		emit_and_listen();
 	}
 
