@@ -2,7 +2,7 @@
 
 >A simple module for caching data, it can be used to save some url of ajax requests for instance.
 
->**Version** :`0.1.0`
+>**Version** :`1.0.0`
 
 >**Author**: [Eduardo Ottaviani](//github.com/Javiani)
 

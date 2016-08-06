@@ -33,9 +33,9 @@ define([
 
 ], function( jails, logger ){
 
-	jails.app('sample', function( html, data ){
+	jails('sample', function( component, html, data ){
 
-		this.init = function(){
+		component.init = function(){
             // Some code here...
 		};
 
