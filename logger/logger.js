@@ -65,7 +65,7 @@ define(['jails'],function( jails ){
 		proto.get = function( target ){
 			var _self = this;
 			return function(method){
-				var args = Array.prototype.slice(arguments);
+				var args = Array.prototype.slice.call(arguments);
 				args.shift();
 				console.log( style( '[{0}] => '+target+'.%c'+method +' ✓', _self.name, target ), 'color:#336699', args );
 				return base.get.call(_self, target).apply(_self, arguments);
