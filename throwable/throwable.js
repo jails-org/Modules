@@ -1,6 +1,10 @@
 define(['jails'],function( jails ){
 
-	return function(){
+	var ignore = { subscribe:true, publish:true, get:true };
+
+	return function( config ){
+
+		config = config || {};
 
 		var components = jails.components;
 		var component  = jails.Component.prototype;
@@ -10,13 +14,13 @@ define(['jails'],function( jails ){
 		}
 
 		for( var method in component ){
-			if( component[method].call && method != 'subscribe' && method != 'publish' ){
+			if( component[method].call && !(method in ignore) ){
 				component[method] = wrap( method, component[method] );
 			}
 		}
 	};
 
-	function wrap( name, fn ){
+	function wrap( name, fn, methd ){
 
 		return function(){
 
@@ -25,8 +29,8 @@ define(['jails'],function( jails ){
 
 				if( cp ){
 					for (var method in cp ){
-						if( cp[method].call && method != 'subscribe' && method != 'publish' ){
-							cp[method] = wrap(name, cp[method])
+						if( cp[method].call && !(method in ignore) ){
+							cp[method] = wrap(name, cp[method], method)
 						}
 					}
 				}
@@ -34,9 +38,10 @@ define(['jails'],function( jails ){
 				return cp || {};
 
 			}catch( err ){
+				var error = { err: err, component :name, method :methd }
 
-				jails.publish('throwable', { err: err, name :name });
-				jails.publish('throwable@' + name, { err: err, name :name });
+				jails.publish('throwable', error);
+				jails.publish('throwable@' + name, error);
 
 				return {};
 			}
