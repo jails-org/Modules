@@ -1,7 +1,5 @@
 define(['jails'],function( jails ){
 
-	var ignore = { subscribe:true, publish:true, get:true };
-
 	return function( config ){
 
 		config = config || {};
@@ -14,7 +12,7 @@ define(['jails'],function( jails ){
 		}
 
 		for( var method in component ){
-			if( component[method].call && !(method in ignore) ){
+			if( component[method].call && !(method in component) ){
 				component[method] = wrap( method, component[method] );
 			}
 		}
@@ -29,7 +27,7 @@ define(['jails'],function( jails ){
 
 				if( cp ){
 					for (var method in cp ){
-						if( cp[method].call && !(method in ignore) ){
+						if( cp[method].call && !(method in jails.Component.prototype) ){
 							cp[method] = wrap(name, cp[method], method)
 						}
 					}
