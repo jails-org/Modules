@@ -54,12 +54,13 @@ define(['jails'],function( jails ){
 		}
 
 		proto.listen = function(ev, args){
-			var name = this.name;
+			var name = this.name, ret;
 			console.log( style( 'Component.{0} is listening to %c\'{1}\'', name, ev ), 'color:#336699;' );
-			base.listen.apply( this, arguments );
+			ret = base.listen.apply( this, arguments );
 			jails.events.on(this.element, ev, function(){
 				console.log( style( 'Component.{0} listened to %c\'{1}\'', name, ev ), 'color:green;' );
 			});
+			return ret;
 		}
 
 		proto.get = function( target ){
