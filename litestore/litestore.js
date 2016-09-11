@@ -6,6 +6,7 @@ define(function(){
 
 		function update( newstate ){
 			topics.forEach(function( method ){ method( newstate ) });
+			state = newstate;
 		}
 
 		return {
