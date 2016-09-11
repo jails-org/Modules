@@ -68,6 +68,13 @@
 			"authors" :["Eduardo Ottaviani"],
 			"description" :"The dinamitedux is a simplified version of Redux pattern for small applications.",
 			"section" :"Persistence"
+		},
+
+		{
+			"name" :"litestore",
+			"authors" :["Eduardo Ottaviani"],
+			"description" :"A very light and simple implementation of a store using one directional flow.",
+			"section" :"Persistence"
 		}
 
 	]
