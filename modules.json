@@ -8,6 +8,12 @@
 	},
 	"items" :[
 		{
+			"name" :"stream",
+			"authors" :["Eduardo Ottaviani"],
+			"description" :"A function that debounce dom events and returns them as a list of events to be mapped.",
+			"section" :"DOM Events"
+		},
+		{
 			"name" :"reduxtore",
 			"authors" :["Eduardo Ottaviani"],
 			"description" :"A Redux Store AMD implementation.",
