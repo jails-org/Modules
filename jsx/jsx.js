@@ -19,8 +19,7 @@ define(function(){
 	}
 
 	f.h = function( type, props, children ){
-		var args = Array.prototype.slice.call( arguments );
-		return { type:args.shift(), props: args.shift() || {}, children:args };
+		return { type:type, props: props || {}, children:children };
 	};
 
 	function setBooleanProp($target, name, value) {
@@ -85,9 +84,13 @@ define(function(){
 		}
 		var $el = document.createElement(node.type);
 		setProps($el, node.props);
-		node.children.map(createElement).forEach($el.appendChild.bind($el));
-	}
+		if( node.children.map )
+			node.children.map(createElement).forEach($el.appendChild.bind($el));
+		else
+			$el.appendChild(createElement(node.children));
 		return $el;
+	}
+
 
 	function changed(node1, node2) {
 		return typeof node1 !== typeof node2 ||
