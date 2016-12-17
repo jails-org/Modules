@@ -8,6 +8,12 @@
 	},
 	"items" :[
 		{
+			"name" :"jsx",
+			"authors" :["Eduardo Ottaviani"],
+			"description" :"jsx module let you to describe programmaticaly jsx templates with the advantage of virtual dom diff.",
+			"section" :"DOM Template"
+		},
+		{
 			"name" :"stream",
 			"authors" :["Eduardo Ottaviani"],
 			"description" :"A function that debounce dom events and returns them as a list of events to be mapped.",
