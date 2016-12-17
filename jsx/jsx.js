@@ -18,7 +18,7 @@ define(function(){
 		};
 	}
 
-	f.h = function( type, props, ...children ){
+	f.h = function( type, props, children ){
 		var args = Array.prototype.slice.call( arguments );
 		return { type:args.shift(), props: args.shift() || {}, children:args };
 	};
@@ -71,8 +71,9 @@ define(function(){
 		}
 	}
 
-	function updateProps($target, newProps, oldProps = {}) {
-		const props = Object.assign({}, newProps, oldProps);
+	function updateProps($target, newProps, oldProps) {
+		oldProps = oldProps || {};
+		var props = Object.assign({}, newProps, oldProps);
 		Object.keys(props).forEach(function(name){
 			updateProp($target, name, newProps[name], oldProps[name]);
 		});
@@ -95,7 +96,8 @@ define(function(){
 		node1.props && node1.props.forceUpdate;
 	}
 
-	function updateElement($parent, newNode, oldNode, index = 0) {
+	function updateElement($parent, newNode, oldNode, index) {
+		index = index || 0;
 		if (!oldNode) {
 			$parent.appendChild(createElement(newNode));
 		} else if (!newNode) {
@@ -106,7 +108,7 @@ define(function(){
 			updateProps( $parent.childNodes[index], newNode.props, oldNode.props);
 			var newLength = newNode.children.length;
 			var oldLength = oldNode.children.length;
-			for (let i = 0; i < newLength || i < oldLength; i++) {
+			for (var i = 0; i < newLength || i < oldLength; i++) {
 				updateElement($parent.childNodes[index],newNode.children[i],oldNode.children[i],i);
 			}
 		}
