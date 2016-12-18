@@ -22,10 +22,9 @@ define(function(){
 
 		var args  = Array.prototype.slice.call( arguments );
 		var type  = args.shift();
-		var props = props? args.shift() :{};
+		var props = args.shift()||{};
 
 		children  = [].concat.apply([], args);
-
 		return { type:type, props: props || {}, children:children };
 	};
 
@@ -50,7 +49,7 @@ define(function(){
 		}  else if (name === 'className') {
 			$target.setAttribute('class', value);
 		} else if (typeof value === 'boolean') {
-		setBooleanProp($target, name, value);
+			setBooleanProp($target, name, value);
 		} else {
 			$target.setAttribute(name, value);
 		}
@@ -99,12 +98,12 @@ define(function(){
 		if (typeof node === 'string') {
 			return document.createTextNode(node);
 		}
+
 		var $el = document.createElement(node.type);
 		setProps($el, node.props);
 		node.children.map(createElement).forEach($el.appendChild.bind($el));
 		return $el;
 	}
-
 
 	function changed(node1, node2) {
 		return typeof node1 !== typeof node2 ||
@@ -115,7 +114,9 @@ define(function(){
 
 	function updateElement($parent, newNode, oldNode, index) {
 		index = index || 0;
+
 		if (!oldNode) {
+			console.log('newNode', newNode)
 			$parent.appendChild(createElement(newNode));
 		} else if (!newNode) {
 			if ( index >= $parent.childNodes.length )
