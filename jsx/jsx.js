@@ -116,7 +116,6 @@ define(function(){
 		index = index || 0;
 
 		if (!oldNode) {
-			console.log('newNode', newNode)
 			$parent.appendChild(createElement(newNode));
 		} else if (!newNode) {
 			if ( index >= $parent.childNodes.length )
