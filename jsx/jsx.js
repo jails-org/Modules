@@ -19,6 +19,13 @@ define(function(){
 	}
 
 	f.h = function( type, props, children ){
+
+		var args  = Array.prototype.slice.call( arguments );
+		var type  = args.shift();
+		var props = props? args.shift() :{};
+
+		children  = [].concat.apply([], args);
+
 		return { type:type, props: props || {}, children:children };
 	};
 
@@ -31,25 +38,35 @@ define(function(){
 		}
 	}
 
-	function removeBooleanProp($target, name) {
-		$target.removeAttribute(name);
-		$target[name] = false;
+	function isCustomProp(name) {
+	  return false;
 	}
 
 	function setProp($target, name, value) {
-		if (name === 'className') {
+		if (isCustomProp(name)) {
+			return;
+		} else if (name === '_src' && value) {
+			$target.setAttribute('src', value);
+		}  else if (name === 'className') {
 			$target.setAttribute('class', value);
 		} else if (typeof value === 'boolean') {
-			setBooleanProp($target, name, value);
+		setBooleanProp($target, name, value);
 		} else {
 			$target.setAttribute(name, value);
 		}
 	}
 
+	function removeBooleanProp($target, name) {
+		$target.removeAttribute(name);
+		$target[name] = false;
+	}
+
 	function removeProp($target, name, value) {
 		if (name === 'className') {
 			$target.removeAttribute('class');
-		} else if (typeof value === 'boolean') {
+		}else if (name === '_src') {
+			$target.removeAttribute('src');
+		}else if (typeof value === 'boolean') {
 			removeBooleanProp($target, name);
 		} else {
 			$target.removeAttribute(name);
@@ -84,10 +101,7 @@ define(function(){
 		}
 		var $el = document.createElement(node.type);
 		setProps($el, node.props);
-		if( node.children.map )
-			node.children.map(createElement).forEach($el.appendChild.bind($el));
-		else
-			$el.appendChild(createElement(node.children));
+		node.children.map(createElement).forEach($el.appendChild.bind($el));
 		return $el;
 	}
 
