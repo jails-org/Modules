@@ -118,11 +118,13 @@ define(function(){
 		if (!oldNode) {
 			$parent.appendChild(createElement(newNode));
 		} else if (!newNode) {
-			$parent.removeChild( $parent.childNodes[index]);
+			if ( index >= $parent.childNodes.length )
+				index = $parent.childNodes.length -1;
+			$parent.removeChild( $parent.childNodes[ index ] );
 		} else if (changed(newNode, oldNode)) {
 			$parent.replaceChild(createElement(newNode),$parent.childNodes[index]);
 		} else if (newNode.type) {
-			updateProps( $parent.childNodes[index], newNode.props, oldNode.props);
+			updateProps( $parent.childNodes[index], newNode.props, oldNode.props );
 			var newLength = newNode.children.length;
 			var oldLength = oldNode.children.length;
 			for (var i = 0; i < newLength || i < oldLength; i++) {
