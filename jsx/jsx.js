@@ -48,7 +48,9 @@ define(function(){
 			$target.setAttribute('src', value);
 		}  else if (name === 'className') {
 			$target.setAttribute('class', value);
-		} else if (typeof value === 'boolean') {
+		} else if (name === 'value') {
+			$target.value = value;
+		}  else if (typeof value === 'boolean') {
 			setBooleanProp($target, name, value);
 		} else {
 			$target.setAttribute(name, value);
