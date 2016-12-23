@@ -1,6 +1,6 @@
-# jsx
+# vdom
 
->A decoupled JSX templates module ( no event system attached )
+>A decoupled and simple virtual dom implementation
 
 >**Version** :`1.0.0`
 
@@ -9,9 +9,6 @@
 >**Original**: https://medium.com/@deathmood/write-your-virtual-dom-2-props-events-a957608f5c76#.z238xqzco
 
 ---
-
-`jsx` module let you to describe programmaticaly jsx templates with the advantage of virtual dom diff.
-
 
 # Setup
 
@@ -37,7 +34,7 @@ module: {
 		exclude: /node_modules/,
 		query:{
 			presets:['es2015'],
-			plugins:[["transform-react-jsx", { "pragma": "jsx.h"}]]
+			plugins:[["transform-react-jsx", { "pragma": "vdom.h"}]]
 		}
 	}]
 }
@@ -48,9 +45,9 @@ module: {
 ## Template `item.jsx`
 
 ```js
-import jsx from 'jails-modules/jsx'
+import vdom from 'jails-modules/vdom'
 
-export default jsx(( data )=>{
+export default vdom(( data )=>{
 	return (
 		<span id="my-id" className="my-class">
 			{ data.i < 3? data.value :'You have clicked more then 3 times!!!' }
