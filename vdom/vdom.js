@@ -2,17 +2,23 @@
 	@author: https://medium.com/@deathmood
 	@url: https://medium.com/@deathmood/write-your-virtual-dom-2-props-events-a957608f5c76#.z238xqzco
 */
-define(function(){
+define(['jails'], function( jails ){
 
 	var f = function( arrowf ){
 
 		return function( element ){
 			var oldnode;
 			return function( state ){
+
 				if( !oldnode )
 					element.innerHTML = '';
+
 				var newnode = arrowf( state );
 				updateElement( element, newnode, oldnode );
+
+				if( !oldnode)
+					jails.refresh( element );
+
 				oldnode = newnode;
 			}
 		};
@@ -116,15 +122,16 @@ define(function(){
 
 	function updateElement($parent, newNode, oldNode, index) {
 		index = index || 0;
-
 		if (!oldNode) {
 			$parent.appendChild(createElement(newNode));
+			jails.refresh( $parent );
 		} else if (!newNode) {
 			if ( index >= $parent.childNodes.length )
 				index = $parent.childNodes.length -1;
 			$parent.removeChild( $parent.childNodes[ index ] );
 		} else if (changed(newNode, oldNode)) {
 			$parent.replaceChild(createElement(newNode),$parent.childNodes[index]);
+			jails.refresh( $parent );
 		} else if (newNode.type) {
 			updateProps( $parent.childNodes[index], newNode.props, oldNode.props );
 			var newLength = newNode.children.length;
