@@ -8,6 +8,18 @@
 	},
 	"items" :[
 		{
+			"name" :"jsx",
+			"authors" :["Eduardo Ottaviani"],
+			"description" :"jsx module let you to describe programmaticaly jsx templates with the advantage of virtual dom diff.",
+			"section" :"DOM Template"
+		},
+		{
+			"name" :"stream",
+			"authors" :["Eduardo Ottaviani"],
+			"description" :"A function that debounce dom events and returns them as a list of events to be mapped.",
+			"section" :"DOM Events"
+		},
+		{
 			"name" :"reduxtore",
 			"authors" :["Eduardo Ottaviani"],
 			"description" :"A Redux Store AMD implementation.",
@@ -67,6 +79,13 @@
 			"name" :"dinamitedux",
 			"authors" :["Eduardo Ottaviani"],
 			"description" :"The dinamitedux is a simplified version of Redux pattern for small applications.",
+			"section" :"Persistence"
+		},
+
+		{
+			"name" :"litestore",
+			"authors" :["Eduardo Ottaviani"],
+			"description" :"A very light and simple implementation of a store using one directional flow.",
 			"section" :"Persistence"
 		}
 

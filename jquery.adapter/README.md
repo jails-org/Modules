@@ -4,11 +4,9 @@
 
 >**Dependencies** :`jquery.js`
 
->**Version** :`0.1.0`
+>**Version** :`1.0.0`
 
 >**Author**: [Eduardo Ottaviani](//github.com/Javiani)
-
->**Demo**: [Codepen](//codepen.io/Javiani/pen/YyrdBy)
 
 ---
 
