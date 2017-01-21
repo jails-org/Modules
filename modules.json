@@ -38,12 +38,6 @@
 			"section" :"Debug"
 		},
 		{
-			"name" :"url",
-			"authors" :["Eduardo Ottaviani"],
-			"description" :"The url module helps you to redirect application url easily. It will change only the hash from location object, used on deeplink applications.",
-			"section" :"URL"
-		},
-		{
 			"name" :"routr",
 			"authors":["Eduardo Ottaviani"],
 			"description" :"An improved Router for your applications, simple calls, more faster then Router and standalone. It was created after observations on the regular Router usage, so has the same advantages but and better written.",
@@ -69,19 +63,7 @@
 			"description" :"Just a simple cookie wrapper to deal with document.cookie property.",
 			"section" :"Persistence"
 		},
-		{
-			"name" :"pubsub",
-			"authors" :["Eduardo Ottaviani"],
-			"description" :"A global pubsub container to handle publish and subscribe pattern, triggers a custom event and listen to them aswell. Very useful to decouple your components and make them more standalone",
-			"section" :"Events"
-		},
-		{
-			"name" :"dinamitedux",
-			"authors" :["Eduardo Ottaviani"],
-			"description" :"The dinamitedux is a simplified version of Redux pattern for small applications.",
-			"section" :"Persistence"
-		},
-
+		
 		{
 			"name" :"litestore",
 			"authors" :["Eduardo Ottaviani"],
