@@ -92,7 +92,7 @@ define(function(){
 							found = true;
 
 					if(!found){
-						console.info('[ Logger ]', name, 'called', 'but there are no component with that method.\n', link.method);
+						console.info('[ Logger ]', name, 'called', '.'+method+'()', 'but there are no component with that method.\n', link.method);
 					}
 
 					fn.apply(null, arguments);
