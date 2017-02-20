@@ -20,12 +20,6 @@
 			"section" :"DOM Events"
 		},
 		{
-			"name" :"reduxtore",
-			"authors" :["Eduardo Ottaviani"],
-			"description" :"A Redux Store AMD implementation.",
-			"section" :"Persistence"
-		},
-		{
 			"name" :"throwable",
 			"authors" :["Eduardo Ottaviani"],
 			"description" :"This modules helps you to handling exceptions and keeping all the modules working if some other module breaks. Also, helps you to subscribe to custom events to handle common errors outside your module logic.",
@@ -63,7 +57,7 @@
 			"description" :"Just a simple cookie wrapper to deal with document.cookie property.",
 			"section" :"Persistence"
 		},
-		
+
 		{
 			"name" :"litestore",
 			"authors" :["Eduardo Ottaviani"],

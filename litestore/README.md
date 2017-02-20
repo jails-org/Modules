@@ -2,7 +2,7 @@
 
 >A Simple store using one direction flow implementation.
 
->**Version** :`1.0.0`
+>**Version** :`3.0.0`
 
 >**Author**: [Eduardo Ottaviani](//github.com/Javiani)
 
@@ -17,37 +17,32 @@ Use that form when your application is very simple and you don't want to create 
 `components/my-app.js`
 
 ```js
-define([
+var jails = require('jails-js');
+var litestore = require('jails-modules/litestore');
 
-	'jails',
-	'jails-modules/litestore'
+jails('my-app', function( component, element, props ){
 
-], function( jails, liteStore ){
-
-	jails('my-app', function( component, element, annotation ){
-
-		var store = liteStore({
-			title : 'Devs',
-			items :['Paul', 'Michael', 'Joseph']
-		});
-
-		component.init = function(){
-			store.subscribe( update );
-
-			//Changing title
-			store.set(function( state ){ state.title = 'New Devs' });
-
-			//Changing items
-			store.set(function( state ){ state.items = ['Andrew', 'Isaac', 'Albert'] });
-		};
-
-		function update( state ){
-			var title = '<h2>'+ state.title +'</h2>';
-			var peoples = '<p>' + state.items.join('-') + '</p>';
-			element.innerHTML = title + peoples;
-		}
-
+	var store = liteStore({
+		title : 'Devs',
+		items :['Paul', 'Michael', 'Joseph']
 	});
+
+	component.init(function(){
+
+		store.subscribe( update );
+
+		//Changing title
+		store.set(function( state ){ state.title = 'New Devs' });
+
+		//Changing items
+		store.set(function( state ){ state.items = ['Andrew', 'Isaac', 'Albert'] });
+	});
+
+	function update( state ){
+		var title = '<h2>'+ state.title +'</h2>';
+		var peoples = '<p>' + state.items.join('-') + '</p>';
+		element.innerHTML = title + peoples;
+	}
 
 });
 
@@ -58,73 +53,61 @@ define([
 Use this form when your application is a little bit complex, and you want to set all information about state and mutations outside your component in another js module.
 
 ```js
-define([
+var jails   = require('jails-js');
+var mystore = require('./mystore');
 
-	'jails',
-	'mystore',
+jails('my-app', function( component, element, annotation ){
 
-], function( jails, mystore ){
+	var store = mystore();
 
-	jails('my-app', function( component, element, annotation ){
-
-		var store = mystore();
-
-		component.init = function(){
-			store.subscribe( update );
-			//Changing title
-			store.dispatch('CHANGE_TITLE', { text: 'New Devs' });
-			//Changing items
-			store.dispatch('CHANGE_ITEMS', { list: ['Andrew', 'Isaac', 'Albert'] });
-		};
-
-		function update( state ){
-			var title = '<h2>'+ state.title +'</h2>';
-			var peoples = '<p>' + state.items.join('-') + '</p>';
-			element.innerHTML = title + peoples;
-		}
-
+	component.init(function(){
+		store.subscribe( update );
+		//Changing title
+		store.dispatch('CHANGE_TITLE', { text: 'New Devs' });
+		//Changing items
+		store.dispatch('CHANGE_ITEMS', { list: ['Andrew', 'Isaac', 'Albert'] });
 	});
+
+	function update( state ){
+		var title = '<h2>'+ state.title +'</h2>';
+		var peoples = '<p>' + state.items.join('-') + '</p>';
+		element.innerHTML = title + peoples;
+	}
 
 });
 ```
 
-`mystore.js`
+`./mystore.js`
 
 ```js
-define([
+var jails 	  = require('jails-js');
+var litestore = require('jails-modules/litestore');
 
-	'jails',
-	'jails-modules/litestore',
-
-], function( jails, litestore ){
-
-	var mystore = liteStore({
-		title : 'Devs',
-		items : ['Paul', 'Michael', 'Joseph']
-	});
-
-	mystore.actions({
-
-		'CHANGE_TITLE': function( newstate, payload ){
-			newstate.title = payload.text;
-			return newstate;
-		},
-
-		'CHANGE_ITEMS': function( newstate, payload ){
-			newstate.items = payload.list;
-			return newstate;
-		}
-	});
-
-	return mystore;
+var mystore = liteStore({
+	title : 'Devs',
+	items : ['Paul', 'Michael', 'Joseph']
 });
+
+mystore.actions({
+
+	'CHANGE_TITLE': function( newstate, payload ){
+		newstate.title = payload.text;
+		return newstate;
+	},
+
+	'CHANGE_ITEMS': function( newstate, payload ){
+		newstate.items = payload.list;
+		return newstate;
+	}
+});
+
+return mystore;
 ```
 
 # API
 
 ## .subscribe( Function(state) )  :unsubscribe()
 Add a listener to store updates, gets the state of the store. The `.subscribe()` call will return an `unsubscribe` function to remove the listener.
-
 
 ## .set( Function( state ) )
 

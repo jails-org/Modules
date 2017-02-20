@@ -2,7 +2,7 @@
 
 >A decoupled and simple virtual dom implementation
 
->**Version** :`1.0.0`
+>**Version** :`3.0.0`
 
 >**Author**: [Eduardo Ottaviani](//github.com/Javiani)
 
@@ -45,38 +45,36 @@ module: {
 ## Template `item.jsx`
 
 ```js
-import vdom from 'jails-modules/vdom'
-
-export default vdom(( data )=>{
+var vdom = require('jails-modules/vdom');
+module.exports = vdom(function(data){
 	return (
 		<span id="my-id" className="my-class">
 			{ data.i < 3? data.value :'You have clicked more then 3 times!!!' }
 		</span>
-	)
-})
+	);
+});
 ```
 
 ## Component `button.js`
 
 ```js
-import Template from 'item.jsx'
+var Template = require('./item.jsx');
 
-export default( component, button, anno )=>{
+module.exports = function( component, button, props ){
 
-    let i       = 0
-    let value   = button.innerText
-    let update  = Template( element )
+	var i       = 0;
+    var value   = button.innerText;
+    var update  = Template( element );
 
-	component.init = ()=>{
-		component.on('click', onclick)
+	component.init(function(){
+		component.on('click', onclick);
+	});
+
+	function onclick(){
+		i++;
+		update({ value:value, i:i });
 	}
-
-	const onclick = ()=>{
-		i++
-		update({ value, i })
-	}
-}
-
+};
 ```
 
 ## Markup

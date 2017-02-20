@@ -4,7 +4,7 @@
 
 >**Dependencies** :`jquery.js`
 
->**Version** :`1.0.0`
+>**Version** :`3.0.0`
 
 >**Author**: [Eduardo Ottaviani](//github.com/Javiani)
 
@@ -24,24 +24,11 @@ On your config file, load up the adapter and plug the interface to the Jails cor
 In the example above, you will see that the adapter is a new dependency and must be loaded with some jquery version.
 
 ```js
-require.config({
+var jails   = require('jails-js');
+var adapter = require('jails-modules/jquery.adapter');
+var jquery  = require('jquery');
 
-	baseUrl :'assets/js/',
-	deps    :['jails', 'adapter', 'jquery', global.page],
-
-	paths   :{
-		jails		:'path/to/jails',
-		jquery		:'//cdnjs.cloudflare.com/ajax/libs/jquery/1.11.3/jquery.min',
-		adapter		:'path/to/my/modules/adapter.jquery'
-	},
-
-	callback :function( jails, adapter ){
-
-		jails.events = adapter;
-		jails.start();
-	}
-});
-
+jails.events = adapter( jquery );
 ```
 
 And there you go... Now your Jails Application has improved his support level. Cheers!

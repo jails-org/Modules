@@ -2,7 +2,7 @@
 
 > A function that debounce dom events and returns them as a list of events to be mapped.
 
->**Version** :`1.0.0`
+>**Version** :`3.0.0`
 
 >**Author**: [Eduardo Ottaviani](//github.com/Javiani)
 

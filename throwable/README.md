@@ -2,7 +2,7 @@
 
 > Extends Jails with Error Handling Interface.
 
->**Version** :`1.0.0`
+>**Version** :`3.0.0`
 
 >**Author**: [Eduardo Ottaviani](//github.com/Javiani)
 
@@ -17,24 +17,11 @@ You need to include the `throwable` as a 'middleware' in your config file.
 After that, you need to call it before Jails starts.
 
 ```js
-require.config({
+var jails = require('jails-js');
+var throwable = require('jails-modules/throwable');
 
-	baseUrl :'js/',
-	deps	:['jails', 'throwable', global.page],
-
-	paths   :{
-		jails		:'//rawgit.com/jails-org/Jails/master/source/jails.min',
-		throwable	:'../../../Modules/throwable/throwable'
-	},
-
-	callback :function( jails, throwable ){
-		throwable();
-		//Debug === true lets the browser handles the error,
-		//Use that for debug
-		jails.start();
-	}
-});
-
+throwable();
+jails.start();
 ```
 
 ## What Throwable does?
@@ -57,26 +44,23 @@ Instead of handling errors inside your module, you can create errors files that 
 **my-component.js**
 
 ```js
-define([
-	'jails',
-	'errors/my-component.error'
-], function( jails ){
+var jails = require('jails-js');
+require('errors/my-component.error');
 
-	jails('my-component', function( component, html, data ){
+jails('my-component', function( component, element, props ){
 
-		component.init = function(){
-			undefinedMethod();
-		};
+	component.init(function(){
+		undefinedMethod();
 	});
 });
 ```
 
 **my-component.error.js**
-```js
-define(['jails'], function( jails ){
 
-	jails.subscribe('throwable@my-component', function( error ){
-		console.log( error );
-	});
+```js
+var jails = require('jails-js');
+
+jails.subscribe('throwable@my-component', function( error ){
+	console.log( error );
 });
 ```

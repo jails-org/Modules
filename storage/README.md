@@ -2,7 +2,7 @@
 
 > The storage AMD is just a wrapper for the localStorage and sessionStorage global objects.
 
->**Version** :`1.0.0`
+>**Version** :`3.0.0`
 
 >**Author**: [Eduardo Ottaviani](//github.com/Javiani)
 
