@@ -20,12 +20,6 @@
 			"section" :"DOM Events"
 		},
 		{
-			"name" :"throwable",
-			"authors" :["Eduardo Ottaviani"],
-			"description" :"This modules helps you to handling exceptions and keeping all the modules working if some other module breaks. Also, helps you to subscribe to custom events to handle common errors outside your module logic.",
-			"section" :"Error Handling"
-		},
-		{
 			"name" :"logger",
 			"authors" :["Eduardo Ottaviani"],
 			"description" :"Logger module helps you to visualize all the subscriptions and publishing events and also to easily track your Jails application mistakes from Jails workflow perspective.",
@@ -43,21 +37,12 @@
 			"description" :"This AMD module has the simplest way to use the localStorage and sessionStorage objects, very useful to persist data on client side.",
 			"section" :"Persistence"
 		},
-
-		{
-			"name" :"cache",
-			"authors" :["Eduardo Ottaviani"],
-			"description" :"A simple module for caching data, it can be used to save some url of ajax requests for instance.",
-			"section" :"Persistence"
-		},
-
 		{
 			"name" :"cookies",
 			"authors" :["Leandro Vieira Pinho", "Eduardo Ottaviani"],
 			"description" :"Just a simple cookie wrapper to deal with document.cookie property.",
 			"section" :"Persistence"
 		},
-
 		{
 			"name" :"litestore",
 			"authors" :["Eduardo Ottaviani"],
