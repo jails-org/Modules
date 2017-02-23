@@ -46,14 +46,8 @@ define(['jails'], function( jails ){
 		}
 	}
 
-	function isCustomProp(name) {
-	  return false;
-	}
-
 	function setProp($target, name, value) {
-		if (isCustomProp(name)) {
-			return;
-		} else if (name === '_src' && value) {
+		if (name === '_src' && value) {
 			$target.setAttribute('src', value);
 		}  else if (name === 'className') {
 			$target.setAttribute('class', value);
@@ -86,9 +80,9 @@ define(['jails'], function( jails ){
 	function setProps($target, props) {
 		Object.keys(props).forEach(function(name){
 			setProp($target, name, props[name]);
-			if(name == 'data-component')
-				components = true;
 		});
+		if( 'data-component' in props )
+			components = true;
 	}
 
 	function updateProp($target, name, newVal, oldVal) {
