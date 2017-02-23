@@ -4,6 +4,8 @@
 */
 define(['jails'], function( jails ){
 
+	var components = false;
+
 	var f = function( arrowf ){
 
 		return function( element ){
@@ -16,9 +18,10 @@ define(['jails'], function( jails ){
 				var newnode = arrowf( state );
 				updateElement( element, newnode, oldnode );
 
-				if( !oldnode)
+				if(components)
 					jails.start( element );
 
+				components = false;
 				oldnode = newnode;
 			}
 		};
@@ -83,6 +86,8 @@ define(['jails'], function( jails ){
 	function setProps($target, props) {
 		Object.keys(props).forEach(function(name){
 			setProp($target, name, props[name]);
+			if(name == 'data-component')
+				components = true;
 		});
 	}
 
@@ -124,14 +129,12 @@ define(['jails'], function( jails ){
 		index = index || 0;
 		if (!oldNode) {
 			$parent.appendChild(createElement(newNode));
-			jails.start( $parent );
 		} else if (!newNode) {
 			if ( index >= $parent.childNodes.length )
 				index = $parent.childNodes.length -1;
 			$parent.removeChild( $parent.childNodes[ index ] );
 		} else if (changed(newNode, oldNode)) {
 			$parent.replaceChild(createElement(newNode),$parent.childNodes[index]);
-			jails.start( $parent );
 		} else if (newNode.type) {
 			updateProps( $parent.childNodes[index], newNode.props, oldNode.props );
 			var newLength = newNode.children.length;
