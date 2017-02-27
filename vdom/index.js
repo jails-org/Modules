@@ -70,6 +70,8 @@ define(['jails'], function( jails ){
 			$target.removeAttribute('class');
 		}else if (name === '_src') {
 			$target.removeAttribute('src');
+		}else if( name === 'value'){
+			$target.value = '';
 		}else if (typeof value === 'boolean') {
 			removeBooleanProp($target, name);
 		} else {
