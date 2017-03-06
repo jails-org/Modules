@@ -2,7 +2,7 @@
 	@author: https://medium.com/@deathmood
 	@url: https://medium.com/@deathmood/write-your-virtual-dom-2-props-events-a957608f5c76#.z238xqzco
 */
-define(['jails'], function( jails ){
+define(['jails-js'], function( jails ){
 
 	var components = false;
 
