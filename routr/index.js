@@ -1,6 +1,6 @@
-define(function(){
+;(function(){
 
-	return function( routes ){
+	function R( routes ){
 
 		var urls = [], Router, PubSub;
 
@@ -64,4 +64,13 @@ define(function(){
 
 		return Router.set( routes );
 	};
-});
+
+	// UMD export
+	if ( typeof define === 'function' && define.amd ) {
+		define(function () { return R; });
+	} else if ( typeof module !== 'undefined' && module.exports ){
+		module.exports = R;
+	} else {
+		window.Routr = R;
+	}
+})();

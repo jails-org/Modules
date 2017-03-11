@@ -1,9 +1,9 @@
 // For a complete compatibitily across browsers, including IE8, please use jQuery 1.9.1
 // code.jquery.com/jquery-1.9.1.min.js
 
-define(function(){
+;(function(){
 
-	return function($){
+	var Adapter = function($){
 
 		return {
 
@@ -33,4 +33,13 @@ define(function(){
 			}
 		};
 	};
-});
+
+	// UMD export
+	if ( typeof define === 'function' && define.amd ) {
+		define(function () { return Adapter; });
+	} else if ( typeof module !== 'undefined' && module.exports ){
+		module.exports = Adapter;
+	} else {
+		window.Adapter = Adapter;
+	}
+})();

@@ -1,6 +1,8 @@
-define(function(){
+;(function(){
 
-	function interface( object ){
+	var base;
+
+	function _interface( object ){
 
 		this.set = function( name, data ){
 			object.setItem( name, JSON.stringify( data ) );
@@ -26,8 +28,17 @@ define(function(){
 		};
 	}
 
-	return{
-		local 	:new interface( localStorage ),
-		session :new interface( sessionStorage )
+	base = {
+		local 	:new _interface( localStorage ),
+		session :new _interface( sessionStorage )
 	};
-});
+
+	// UMD export
+	if ( typeof define === 'function' && define.amd ) {
+		define(function () { return base; });
+	} else if ( typeof module !== 'undefined' && module.exports ){
+		module.exports = base;
+	} else {
+		window.Storage = base;
+	}
+})();

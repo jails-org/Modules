@@ -1,4 +1,4 @@
-define(function(){
+;(function(){
 
 	/**
 	* w3cookies (0.1) - 23/12/2006
@@ -8,7 +8,7 @@ define(function(){
 
 	var date = new Date();
 
-	return {
+	var Cookie = {
 
 		// Cria o(s) cookie(s)
 		// Forma de uso: w3cookies.create('nome_do_cookie','valor',dias_para_expirar);
@@ -49,4 +49,13 @@ define(function(){
 		}
 	};
 
-});
+	// UMD export
+	if ( typeof define === 'function' && define.amd ) {
+		define(function () { return Cookie; });
+	} else if ( typeof module !== 'undefined' && module.exports ){
+		module.exports = Cookie;
+	} else {
+		window.Cookie = Cookie;
+	}
+
+})();

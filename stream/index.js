@@ -1,6 +1,6 @@
-define(function(){
+;(function(){
 
-	return function( method, timeout ){
+	function stream( method, timeout ){
 
 		var id, $stream = [],
 			timeout = timeout || 500;
@@ -16,4 +16,13 @@ define(function(){
 			}, timeout);
 		}
 	}
-})
+
+	// UMD export
+	if ( typeof define === 'function' && define.amd ) {
+		define(function () { return stream; });
+	} else if ( typeof module !== 'undefined' && module.exports ){
+		module.exports = stream;
+	} else {
+		window.Stream = stream;
+	}
+})();

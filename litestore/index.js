@@ -1,6 +1,6 @@
-define(function(){
+;(function(){
 
-	return function( state ){
+	var Litestore = function( state ){
 
 		var topics = [], actions = {};
 
@@ -38,4 +38,13 @@ define(function(){
 			}
 		}
 	};
-});
+
+	// UMD export
+	if ( typeof define === 'function' && define.amd ) {
+		define(function () { return Litestore; });
+	} else if ( typeof module !== 'undefined' && module.exports ){
+		module.exports = Litestore;
+	} else {
+		window.Litestore = Litestore;
+	}
+})();

@@ -1,6 +1,6 @@
-define(function(){
+;(function(){
 
-	return function( jails ){
+	var Logger = function( jails ){
 
 		var components = jails.components;
 
@@ -108,4 +108,13 @@ define(function(){
 			callback(list[i], i, list);
 	}
 
-});
+	// UMD export
+	if ( typeof define === 'function' && define.amd ) {
+		define(function () { return Logger; });
+	} else if ( typeof module !== 'undefined' && module.exports ){
+		module.exports = Logger;
+	} else {
+		window.Logger = Logger;
+	}
+
+})();
