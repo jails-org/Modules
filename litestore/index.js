@@ -5,7 +5,9 @@
 		var topics = [], actions = {};
 
 		function update( newstate, action ){
-			topics.forEach(function( method ){ method( newstate, action ) });
+			topics.forEach(function( method ){
+				method( newstate, { action:action, oldstate:state, newstate: newstate })
+			});
 			state = newstate;
 		}
 
@@ -14,7 +16,7 @@
 			set: function( fn ){
 				var newstate = Object.assign({}, state);
 				fn( newstate );
-				update( newstate );
+				update( newstate, '' );
 			},
 
 			get: function(){
