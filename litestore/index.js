@@ -4,8 +4,8 @@
 
 		var topics = [], actions = {};
 
-		function update( newstate ){
-			topics.forEach(function( method ){ method( newstate ) });
+		function update( newstate, action ){
+			topics.forEach(function( method ){ method( newstate, action ) });
 			state = newstate;
 		}
 

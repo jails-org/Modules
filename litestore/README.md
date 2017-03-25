@@ -2,7 +2,7 @@
 
 >A Simple store using one direction flow implementation.
 
->**Version** :`3.1.0`
+>**Version** :`3.1.1`
 
 >**Author**: [Eduardo Ottaviani](//github.com/Javiani)
 
