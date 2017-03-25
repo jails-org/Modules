@@ -29,12 +29,12 @@
 			dispatch: function( action, payload ){
 				if( action in actions ){
 					var newstate = Object.assign({}, actions[ action ].call( null, state, payload ));
-					update( newstate || state );
+					update( newstate || state, action );
 				}
 			},
 
 			actions: function( newactions ){
-				actions = newactions
+				actions = Object.assign( actions, newactions );
 			}
 		}
 	};
