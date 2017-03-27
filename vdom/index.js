@@ -142,6 +142,8 @@
 				}
 			}
 		}
+
+		return f;
 	};
 
 	// UMD export
